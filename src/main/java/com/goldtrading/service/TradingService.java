@@ -9,7 +9,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Service for handling gold buy/sell transactions.
@@ -17,7 +16,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class TradingService {
 
     private static final double GST_RATE = 0.03; // 3% GST
-    private static final AtomicInteger invoiceCounter = new AtomicInteger(1000);
 
     private final TransactionDao transactionDao;
     private final GoldInventoryService inventoryService;
@@ -152,7 +150,7 @@ public class TradingService {
 
     private String generateInvoiceNumber(String prefix) {
         String dateStr = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-        int counter = invoiceCounter.getAndIncrement();
-        return String.format("GTS-%s-%s-%04d", prefix, dateStr, counter);
+        String timeStr = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HHmmssSSS"));
+        return String.format("GTS-%s-%s-%s", prefix, dateStr, timeStr);
     }
 }

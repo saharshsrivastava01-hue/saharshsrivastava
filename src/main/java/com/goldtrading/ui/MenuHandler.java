@@ -262,7 +262,21 @@ public class MenuHandler {
         // Get selling price
         System.out.printf("  Current selling price: %.2f INR/gram\n", item.getSellingPricePerGram());
         String priceInput = input.readString("  Enter selling price per gram (press Enter for default): ");
-        double sellPrice = priceInput.isEmpty() ? item.getSellingPricePerGram() : Double.parseDouble(priceInput);
+        double sellPrice;
+        if (priceInput.isEmpty()) {
+            sellPrice = item.getSellingPricePerGram();
+        } else {
+            try {
+                sellPrice = Double.parseDouble(priceInput);
+                if (sellPrice <= 0) {
+                    System.out.println("  [!] Price must be greater than 0. Using default price.");
+                    sellPrice = item.getSellingPricePerGram();
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("  [!] Invalid number. Using default price.");
+                sellPrice = item.getSellingPricePerGram();
+            }
+        }
 
         System.out.println("\n  Payment Methods: 1. CASH  2. BANK_TRANSFER  3. CHEQUE  4. UPI");
         int paymentChoice = input.readIntInRange("  Select Payment Method (1-4): ", 1, 4);
