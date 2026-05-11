@@ -1,0 +1,48 @@
+:root {
+  --bg: #f7f8fc;
+  --text: #1f2937;
+  --accent: #2563eb;
+  --card: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.hero {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: var(--card);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.hero h1 { margin: 0; font-size: 2rem; }
+.hero p { margin: 0.5rem 0 1rem; }
+
+.links a {
+  margin: 0 0.5rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+main {
+  max-width: 840px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+section {
+  background: var(--card);
+  padding: 1.25rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+h2 { margin-top: 0; }
